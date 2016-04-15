@@ -1,0 +1,35 @@
+{
+  "name": "creativity-browsing-survey",
+  "version": "1.0.0",
+  "description": "creativity browsing history",
+  "main": "webServer.js",
+  "dependencies": {
+    "angular-aria": "^1.5.0",
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-resource": "^1.5.0",
+    "angular-material": "^1.0.5",
+    "body-parser": "^1.15.0",
+    "angular-route": "^1.5.0",
+    "async": "^1.5.2",
+    "express-session": "^1.13.0",
+    "express": "^4.13.4",
+    "jshint": "^2.9.1",
+    "mongoose": "^4.4.4",
+    "multer": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gkovacs/creativity-browsing-survey.git"
+  },
+  "author": "Geza Kovacs (http://github.com/gkovacs)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gkovacs/creativity-browsing-survey/issues"
+  },
+  "homepage": "https://github.com/gkovacs/creativity-browsing-survey#readme"
+}

@@ -47,7 +47,16 @@ var app = express();
 app.use(session({secret: 'secretKey', resave: false, saveUninitialized: false}));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost/hci-project');
+var mongo_url = 'mongodb://localhost/hci-project';
+if (process.env.MONGODB_URI) {
+    mongo_url = process.env.MONGODB_URI;
+}
+var http_port = 3000
+if (process.env.PORT) {
+    http_port = process.env.PORT;
+}
+
+mongoose.connect(mongo_url);
 
 // We have the express static module (http://expressjs.com/en/starter/static-files.html) do all
 // the work for us.
@@ -71,7 +80,7 @@ app.post('/surveyResult', function(request, response) {
 
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(http_port, function () {
     var port = server.address().port;
     console.log('Listening at http://localhost:' + port + ' exporting the directory ' + __dirname);
 });
