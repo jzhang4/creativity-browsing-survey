@@ -19,3 +19,13 @@ exports = module.exports = (app) ->
     history_visits.find!lean!exec (err, docs) ->
       res.type 'text/plain'
       res.send JSON.stringify [uncompress_data_field(doc) for doc in docs]
+
+  app.get '/view_history_pages_first', (req, res) ->
+    history_pages.findOne!lean!exec (err, doc) ->
+      res.type 'text/plain'
+      res.send JSON.stringify uncompress_data_field(doc)
+
+  app.get '/view_history_visits_first', (req, res) ->
+    history_visits.findOne!lean!exec (err, doc) ->
+      res.type 'text/plain'
+      res.send JSON.stringify uncompress_data_field(doc)

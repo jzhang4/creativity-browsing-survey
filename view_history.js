@@ -26,7 +26,7 @@
         }())));
       });
     });
-    return app.get('/view_history_visits', function(req, res){
+    app.get('/view_history_visits', function(req, res){
       return history_visits.find().lean().exec(function(err, docs){
         var doc;
         res.type('text/plain');
@@ -38,6 +38,18 @@
           }
           return results$;
         }())));
+      });
+    });
+    app.get('/view_history_pages_first', function(req, res){
+      return history_pages.findOne().lean().exec(function(err, doc){
+        res.type('text/plain');
+        return res.send(JSON.stringify(uncompress_data_field(doc)));
+      });
+    });
+    return app.get('/view_history_visits_first', function(req, res){
+      return history_visits.findOne().lean().exec(function(err, doc){
+        res.type('text/plain');
+        return res.send(JSON.stringify(uncompress_data_field(doc)));
       });
     });
   };
