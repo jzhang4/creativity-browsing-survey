@@ -8,17 +8,31 @@
 <script src="send_extension.js"></script>
 <script src="client_common_base.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/spin.js/spin.min.js"></script>
+<script src="bower_components/spin.js/jquery.spin.js"></script>
+<script src="bower_components/lz-string/libs/lz-string.min.js"></script>
+<script src="bower_components/async/dist/async.min.js"></script>
 <script src="index.js"></script>
 
 </head>
 
 <body>
 
-<p>Check your browser console to see data</p>
+<div class="toplevel" id="please_install_extension">
+Please install the TMI extension <a href="https://chrome.google.com/webstore/detail/tmi/mogonddkdjlindkbpkagjfkbckgjjmem">here</a>
+</div>
 
-<pre id="rawdata"></pre>
+<div class="toplevel" id="not_enough_browsing_history">
+You need to have at least 30 days of active browsing history to participate in this survey
+</div>
 
-<!-- <autofill-data id="autofill" pagename="This shows your data" fields="chrome_history_timespent_domain_past_24_hours"></autofill-data> -->
+<div class="toplevel" id="survey">
+<button class="btn btn-primary" onclick="submit_survey()">Click this button to submit your history</button>
+</div>
+
+<div class="toplevel" id="submitting_please_wait">
+Getting your browsing history and submitting survey
+</div>
 
 </body>
 
