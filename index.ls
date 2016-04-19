@@ -69,7 +69,11 @@ export submit_survey = ->
   hid = Date.now()
   <- post_history_pages_compressed data1.chrome_history_pages_compressed, hid
   <- post_history_visits_compressed_parts data2.chrome_history_visits_compressed_parts, hid
+  survey_finished()
+
+survey_finished = ->
   end_spinner!
+  display_page 'finished'
 
 extension_is_installed = ->
   num_days_with_browsing <- get_num_days_with_browsing!
