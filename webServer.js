@@ -45,7 +45,7 @@ var express = require('express');
 var app = express();
 
 app.use(session({secret: 'secretKey', resave: false, saveUninitialized: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1000mb'}));
 
 var mongo_url = 'mongodb://localhost/hci-project';
 if (process.env.MONGODB_URI) {
@@ -61,7 +61,6 @@ mongoose.connect(mongo_url);
 // We have the express static module (http://expressjs.com/en/starter/static-files.html) do all
 // the work for us.
 app.use(express.static(__dirname));
-
 
 app.post('/surveyResult', function(request, response) {
 
@@ -79,6 +78,9 @@ app.post('/surveyResult', function(request, response) {
         }); 
 
 });
+
+require('./log_history')(app)
+require('./view_history')(app)
 
 var server = app.listen(http_port, function () {
     var port = server.address().port;
