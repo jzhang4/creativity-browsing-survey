@@ -11,6 +11,7 @@ var surveyresult = new Schema({
 	id: String,
 	num_correct: Number,
 	num_total: Number,
+	answer_array: Array,
 });
 
 // the schema is useless so far
