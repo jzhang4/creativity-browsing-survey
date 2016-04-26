@@ -32,12 +32,14 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
 	}
 
 
-   $scope.main.save_result = function (num_correct, num_total, answer_array){
+   $scope.main.submit_survey = function (taken_before, feedback){
         var res = $resource("/surveyResult");
         res.save({id: $scope.main.username, 
-                  num_correct: num_correct,
-                  num_total: num_total,
-                  answer_array: answer_array
+                  num_correct: $scope.main.num_correct,
+                  num_total: $scope.main.total,
+                  answer_array: $scope.main.answer_array,
+                  taken_before: taken_before,
+                  feedback: feedback
                 }, function(response){
                 console.log("saved successfully!");
             }, function errorHandling(err) { 

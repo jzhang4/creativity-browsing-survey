@@ -27,7 +27,8 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$interval.cancel(intervalPromise);
 			$scope.main.completed = true;
 			$scope.main.total = $scope.question_number;
-			$scope.main.save_result($scope.main.num_correct, $scope.question_number, answer_array);
+			$scope.main.answer_array = answer_array;
+			//$scope.main.save_result($scope.main.num_correct, $scope.question_number, $scope.main.answer_array);
 			//store total result correct
 		}else{
 	   		$scope.question_number++;

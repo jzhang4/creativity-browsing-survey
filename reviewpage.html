@@ -1,5 +1,12 @@
 <div>
-      <h1> yay you're done </h1>
+      <h1>Survey Review Page</h1>
       <p>Number Correct: {{main.num_correct}}</p>
       <p>Total: {{main.total}}</p>
+      <p>Have you taken the Remote Associations Test before?
+         <label><input type="radio" ng-model="taken_before" value="yes">Yes</label>
+         <label><input type="radio" ng-model="taken_before" value="no">No</label>   
+      </p>
+      <p>Did you encounter any difficulties?</p>
+      <textarea ng-model="feedback" rows="4" cols="50"></textarea>
+      <p><button ng-disabled="taken_before===undefined" ng-click="main.submit_survey(taken_before, feedback)">Complete Survey</button></p>
 </div>

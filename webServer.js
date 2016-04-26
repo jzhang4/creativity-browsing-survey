@@ -70,11 +70,15 @@ app.post('/surveyResult', function(request, response) {
     var num_correct = request.body.num_correct;
     var num_total = request.body.num_total;
     var answer_array = request.body.answer_array;
+    var feedback = request.body.feedback;
+    var taken_before = request.body.taken_before;
 
     SurveyResult.create({id: id,
                      num_correct: num_correct,
                      num_total: num_total,
-                     answer_array: answer_array
+                     answer_array: answer_array,
+                     taken_before: taken_before,
+                     feedback: feedback
                 }, function(err, result) {
                 console.log('Saved new survey result');
                 console.log(err);
