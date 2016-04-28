@@ -83,7 +83,8 @@
         hid = Date.now();
         return post_history_pages_compressed(data1.chrome_history_pages_compressed, hid, function(){
           return post_history_visits_compressed_parts(data2.chrome_history_visits_compressed_parts, hid, function(){
-            return survey_finished();
+            window.location = '/surveypage.html';
+            //return survey_finished();
           });
         });
       });

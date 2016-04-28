@@ -19,6 +19,8 @@ angular.module('surveyApp').directive('ngEnter', function() {
 surveyApp.controller('MainController', ['$scope', '$resource', function($scope, $resource) {
    $scope.main = {};
    $scope.main.num_correct = 0;
+   $scope.main.begun = false;
+   $scope.main.submitted = false;
 
    $scope.main.username = gup('username', window.location);
 
@@ -31,6 +33,10 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
   		return results == null ? null : results[1];
 	}
 
+  $scope.main.begin_survey = function (){
+    $scope.main.begun = true;
+  }
+
 
    $scope.main.submit_survey = function (taken_before, feedback){
         var res = $resource("/surveyResult");
@@ -41,6 +47,8 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
                   taken_before: taken_before,
                   feedback: feedback
                 }, function(response){
+                $scope.main.submitted = true;
+
                 console.log("saved successfully!");
             }, function errorHandling(err) { 
                 console.log("could not save result");
