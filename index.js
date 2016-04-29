@@ -83,8 +83,7 @@
         hid = Date.now();
         return post_history_pages_compressed(data1.chrome_history_pages_compressed, hid, function(){
           return post_history_visits_compressed_parts(data2.chrome_history_visits_compressed_parts, hid, function(){
-            window.location = '/surveypage.html';
-            //return survey_finished();
+            return survey_finished();
           });
         });
       });
@@ -95,8 +94,8 @@
     return display_page('finished');
   };
   extension_is_installed = function(){
-    return get_num_days_with_browsing(function(num_days_with_browsing){
-      if (num_days_with_browsing > 20) {
+    return get_eligibility(function(eligible){
+      if (eligible) {
         return start_survey();
       } else {
         return not_enough_browsing_history();

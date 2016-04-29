@@ -49,3 +49,11 @@ export start_spinner = ->
 
 export end_spinner = ->
   $('#spinoverlay').spin(false)
+
+export get_num_days_with_browsing = (callback) ->
+  data <- getFieldsFromExtensionUncached ['chrome_history_num_days_with_browsing']
+  callback data.chrome_history_num_days_with_browsing
+
+export get_eligibility = (callback) ->
+  num_days_with_browsing <- get_num_days_with_browsing!
+  callback num_days_with_browsing > 20 # have at least 20 days

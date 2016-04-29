@@ -76,8 +76,8 @@ survey_finished = ->
   display_page 'finished'
 
 extension_is_installed = ->
-  num_days_with_browsing <- get_num_days_with_browsing!
-  if num_days_with_browsing > 20
+  eligible <- get_eligibility!
+  if eligible
     start_survey!
   else
     not_enough_browsing_history!
