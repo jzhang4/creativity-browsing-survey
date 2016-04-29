@@ -29,6 +29,11 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
     }
 
    $scope.main.submit_survey = function (taken_before, feedback){
+        if($scope.main.browsing_history_submitted===false){
+          start_spinner();
+          console.log("hey");
+
+        }
         var res = $resource("/surveyResult");
         res.save({id: $scope.main.username, 
                   num_correct: $scope.main.num_correct,
@@ -37,7 +42,10 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
                   taken_before: taken_before,
                   feedback: feedback
                 }, function(response){
-                $scope.main.submitted = true;
+                  if($scope.main.browsing_history_submitted === false){
+                    
+                  }
+                  $scope.main.submitted = true;
 
                 console.log("saved successfully!");
             }, function errorHandling(err) { 

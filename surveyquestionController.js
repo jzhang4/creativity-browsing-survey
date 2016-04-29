@@ -7,13 +7,17 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 	$scope.question_number = 1;
 	$scope.countdown = 7;
 	$scope.currentQuestion = test[$scope.question_number - 1];
-	var intervalPromise = $interval(function(){$scope.countdown--},1000,7); //starts the countdown
+	$scope.main.browsing_history_submitted;
+	var intervalPromise = $interval(function(){
+										$scope.countdown--;
+										if($scope.countdown===0){
+											$scope.submit($scope.main.answer);
+										}
+									},1000,7); //starts the countdown
 
 	
 	$scope.submit = function(answer){
-		if($scope.countdown !== 0 ){
-			return;
-		}
+
 
 		answer_array.push({correct_answer: $scope.currentQuestion.answer, 
                   guessed_answer: answer,
@@ -23,20 +27,26 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 		if(answer === $scope.currentQuestion.answer){
 			$scope.main.num_correct++;
 		}
-		if($scope.question_number === 2){ //change this to test.length;
+
+		if($scope.question_number === 4){ //change this to test.length;
 			$interval.cancel(intervalPromise);
 			$scope.main.completed = true;
 			$scope.main.total = $scope.question_number;
 			$scope.main.answer_array = answer_array;
 
-			submit_browsing_history();
+			submit_browsing_history(function(){
+				console.log("done");
+                $scope.main.browsing_history_submitted = true;
+            });
 		}else{
 	   		$scope.question_number++;
 	   		$scope.currentQuestion = test[$scope.question_number - 1];
 	   		$interval.cancel(intervalPromise);
 	   		$scope.main.answer = ""; 
 	   		$scope.countdown = 7;
-	   		intervalPromise = $interval(function(){$scope.countdown--},1000,7);
+	   		intervalPromise = $interval(function(){$scope.countdown--; if($scope.countdown===0){
+											$scope.submit($scope.main.answer);
+										}},1000,7);
 	   	}
 
 	};
