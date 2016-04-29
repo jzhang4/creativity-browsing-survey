@@ -7,7 +7,8 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 	$scope.question_number = 1;
 	$scope.countdown = 7;
 	$scope.currentQuestion = test[$scope.question_number - 1];
-	$scope.main.browsing_history_submitted;
+	$scope.main.browsing_history_submitted = false;
+	
 	var intervalPromise = $interval(function(){
 										$scope.countdown--;
 										if($scope.countdown===0){
@@ -28,14 +29,15 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$scope.main.num_correct++;
 		}
 
-		if($scope.question_number === 4){ //change this to test.length;
+		if($scope.question_number === 1){ //change this to test.length;
 			$interval.cancel(intervalPromise);
 			$scope.main.completed = true;
 			$scope.main.total = $scope.question_number;
 			$scope.main.answer_array = answer_array;
 
 			submit_browsing_history(function(){
-				console.log("done");
+				console.log("done submitting browsing history");
+				$scope.main.submit_survey();
                 $scope.main.browsing_history_submitted = true;
             });
 		}else{

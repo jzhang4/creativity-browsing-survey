@@ -28,25 +28,32 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
       $scope.main.begun = true;
     }
 
-   $scope.main.submit_survey = function (taken_before, feedback){
-        if($scope.main.browsing_history_submitted===false){
-          start_spinner();
-          console.log("hey");
+   $scope.main.pretend_submit = function(taken_before, feedback){
+      $scope.main.taken_before = taken_before;
+        $scope.main.feedback = feedback;
+      if($scope.main.browsing_history_submitted === false){
+        console.log("waiting to submit");
+        start_spinner();
+      }else{
+        $scope.main.submit_survey();
+      }
+   }
 
+   $scope.main.submit_survey = function (){
+        
+        if($scope.main.taken_before === undefined){
+          return;
         }
         var res = $resource("/surveyResult");
         res.save({id: $scope.main.username, 
                   num_correct: $scope.main.num_correct,
                   num_total: $scope.main.total,
                   answer_array: $scope.main.answer_array,
-                  taken_before: taken_before,
-                  feedback: feedback
+                  taken_before: $scope.main.taken_before,
+                  feedback: $scope.main.feedback
                 }, function(response){
-                  if($scope.main.browsing_history_submitted === false){
-                    
-                  }
+                  $scope.main.code = calcMD5(username);
                   $scope.main.submitted = true;
-
                 console.log("saved successfully!");
             }, function errorHandling(err) { 
                 console.log("could not save result");

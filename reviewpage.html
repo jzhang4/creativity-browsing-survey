@@ -8,5 +8,5 @@
       </p>
       <p>Did you encounter any difficulties during the survey?</p>
       <textarea ng-model="feedback" rows="4" cols="50"></textarea>
-      <p><button ng-disabled="taken_before===undefined" ng-click="main.submit_survey(taken_before, feedback)">Complete Survey</button></p>
+      <p><button ng-disabled="taken_before===undefined" ng-click="main.pretend_submit(taken_before, feedback)">Complete and Submit Survey</button></p>
 </div>

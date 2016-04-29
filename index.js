@@ -17,8 +17,7 @@
     return display_page('not_enough_browsing_history');
   };
   start_survey = function(){
-    window.location = '/surveypage.html';
-    //return display_page('survey');
+    window.location = '/surveypage.html' + '?username='+ get_username();
   };
 
   out$.submit_survey = submit_survey = function(){
@@ -40,7 +39,7 @@
   };
   survey_finished = function(){
     end_spinner();
-    return display_page('finished');
+    //return display_page('finished');
   };
   extension_is_installed = function(){
     return get_eligibility(function(eligible){
