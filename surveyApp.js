@@ -22,16 +22,7 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
    $scope.main.begun = false;
    $scope.main.submitted = false;
 
-   $scope.main.username = gup('username', window.location);
-
-   function gup( name, url ) {
-   		if (!url) url = location.href;
-   		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-    	var regexS = "[\\?&]"+name+"=([^&#]*)";
-  		var regex = new RegExp( regexS );
-  		var results = regex.exec( url );
-  		return results == null ? null : results[1];
-	}
+   username = $scope.main.username = getUrlParameters().username
 
   $scope.main.begin_survey = function (){
     $scope.main.begun = true;
