@@ -3,10 +3,6 @@ display_page = (pagename) ->
   if pagename?
     $('#' + pagename).show!
 
-get_num_days_with_browsing = (callback) ->
-  data <- getFieldsFromExtensionUncached ['chrome_history_num_days_with_browsing']
-  callback data.chrome_history_num_days_with_browsing
-
 extension_not_installed = ->
   display_page 'please_install_extension'
   once_extension_installed ->
@@ -17,47 +13,6 @@ not_enough_browsing_history = ->
 
 start_survey = ->
   display_page 'survey'
-
-post_json = (url, data, callback) ->  
-  $.ajax {
-    type: 'POST'
-    url: url
-    contentType: 'application/json'
-    data: JSON.stringify(data)
-    error: (err) ->
-      console.log 'had error while posting data'
-      console.log err
-    complete: ->
-      callback?!
-  }
-
-post_history_pages_compressed = (history_pages, hid, callback) ->
-  post_json '/log_history_pages', {
-    data: history_pages
-    user: username
-    hid
-    time: hid
-    timeloc: new Date(hid).toString()
-  }, callback
-
-post_history_visits_compressed_parts = (history_visits_parts, hid, callback) ->
-  num_parts = history_visits_parts.length
-  <- async.forEachOfSeries history_visits_parts, (history_visits, idx, donecb) ->
-    post_json '/log_history_visits', {
-      data: history_visits
-      user: username
-      hid
-      time: hid
-      timeloc: new Date(hid).toString()
-      idx
-      totalparts: num_parts
-    }, donecb
-  callback?!
-
-post_history = (data, callback) ->
-  <- post_history_pages data.chrome_history_pages
-  <- post_history_visits data.chrome_history_visits
-  callback?!
 
 export submit_survey = ->
   display_page 'submitting_please_wait'
