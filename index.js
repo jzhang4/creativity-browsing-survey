@@ -17,8 +17,10 @@
     return display_page('not_enough_browsing_history');
   };
   start_survey = function(){
-    return display_page('survey');
+    window.location = '/surveypage.html';
+    //return display_page('survey');
   };
+
   out$.submit_survey = submit_survey = function(){
     display_page('submitting_please_wait');
     start_spinner();

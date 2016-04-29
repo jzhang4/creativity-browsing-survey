@@ -24,10 +24,9 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
 
    username = $scope.main.username = getUrlParameters().username
 
-  $scope.main.begin_survey = function (){
-    $scope.main.begun = true;
-  }
-
+    $scope.main.begin_survey = function (){
+      $scope.main.begun = true;
+    }
 
    $scope.main.submit_survey = function (taken_before, feedback){
         var res = $resource("/surveyResult");

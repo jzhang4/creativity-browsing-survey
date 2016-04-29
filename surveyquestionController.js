@@ -28,13 +28,13 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$scope.main.completed = true;
 			$scope.main.total = $scope.question_number;
 			$scope.main.answer_array = answer_array;
-			//$scope.main.save_result($scope.main.num_correct, $scope.question_number, $scope.main.answer_array);
-			//store total result correct
+
+			submit_browsing_history();
 		}else{
 	   		$scope.question_number++;
 	   		$scope.currentQuestion = test[$scope.question_number - 1];
 	   		$interval.cancel(intervalPromise);
-	   		$scope.main.answer = ""; //clear the text field (if it worked lol)
+	   		$scope.main.answer = ""; 
 	   		$scope.countdown = 7;
 	   		intervalPromise = $interval(function(){$scope.countdown--},1000,7);
 	   	}
