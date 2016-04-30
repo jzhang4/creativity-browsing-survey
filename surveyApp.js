@@ -52,6 +52,7 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
                   taken_before: $scope.main.taken_before,
                   feedback: $scope.main.feedback
                 }, function(response){
+                  end_spinner();
                   $scope.main.code = calcMD5(username);
                   $scope.main.submitted = true;
                 console.log("saved successfully!");
