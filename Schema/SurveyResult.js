@@ -13,7 +13,8 @@ var surveyresult = new Schema({
 	num_total: Number,
 	answer_array: Array,
 	taken_before: String,
-	feedback: String
+	feedback: String,
+	times: Array
 });
 
 // the schema is useless so far

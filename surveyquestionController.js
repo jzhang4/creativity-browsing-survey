@@ -29,11 +29,12 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$scope.main.num_correct++;
 		}
 
-		if($scope.question_number === 15){ //change this to test.length;
+		if($scope.question_number === 1){ //change this to test.length;
 			$interval.cancel(intervalPromise);
 			$scope.main.completed = true;
 			$scope.main.total = $scope.question_number;
 			$scope.main.answer_array = answer_array;
+			$scope.main.time_end_survey = Date.now();
 
 			submit_browsing_history(function(){
 				console.log("done submitting browsing history");
