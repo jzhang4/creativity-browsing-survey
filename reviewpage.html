@@ -3,10 +3,10 @@
       <p>Number Correct: {{main.num_correct}}</p>
       <p>Total: {{main.total}}</p>
       <p>Have you taken this test before?
-         <label><input type="radio" ng-model="taken_before" value="yes">Yes</label>
-         <label><input type="radio" ng-model="taken_before" value="no">No</label>   
+         <label><input ng-disabled="main.currently_submitting===true" type="radio" ng-model="taken_before" value="yes">Yes</label>
+         <label><input ng-disabled="main.currently_submitting===true" type="radio" ng-model="taken_before" value="no">No</label>   
       </p>
       <p>Did you encounter any difficulties during the survey?</p>
-      <textarea ng-disabled="main.currently_submitting===true"ng-model="feedback" rows="4" cols="50"></textarea>
+      <textarea ng-disabled="main.currently_submitting===true" ng-model="feedback" rows="4" cols="50"></textarea>
       <p><button ng-disabled="taken_before===undefined || main.currently_submitting===true" ng-click="main.pretend_submit(taken_before, feedback)">Complete and Submit Survey</button></p>
 </div>
