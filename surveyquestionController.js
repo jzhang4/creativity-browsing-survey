@@ -56,7 +56,7 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 		}else{
 			time_advanced = Date.now();
 	   		$scope.question_number++;
-	   		offset = offset + 2;
+	   		offset = offset + 1;
 	   		$scope.currentQuestion = test[$scope.question_number + offset - 1];
 	   		$interval.cancel(intervalPromise);
 	   		$scope.main.answer = ""; 
