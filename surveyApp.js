@@ -58,8 +58,7 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
                   answer_array: $scope.main.answer_array,
                   taken_before: $scope.main.taken_before,
                   feedback: $scope.main.feedback,
-                  times:times,
-                  keystrokes: $scope.main.keystrokes
+                  times:times
                 }, function(response){
                   end_spinner();
                   $scope.main.code = calcMD5(username);

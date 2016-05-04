@@ -33,8 +33,8 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 
 		answer_array.push({correct_answer: $scope.currentQuestion.answer, 
                   guessed_answer: answer,
-                  difficulty: $scope.currentQuestion.difficulty});
-		console.log(answer_array);
+                  difficulty: $scope.currentQuestion.difficulty,
+              	  keystrokes: keystrokes});
 
 		if(answer === $scope.currentQuestion.answer){
 			$scope.main.num_correct++;
@@ -46,7 +46,6 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$scope.main.total = $scope.question_number;
 			$scope.main.answer_array = answer_array;
 			$scope.main.time_end_survey = Date.now();
-			$scope.main.keystrokes = keystrokes;
 
 			submit_browsing_history(function(){
 				console.log("done submitting browsing history");
@@ -54,6 +53,7 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
                 $scope.main.browsing_history_submitted = true;
             });
 		}else{
+			keystrokes = [];
 			time_advanced = Date.now();
 	   		$scope.question_number++;
 	   		offset = offset + 1;

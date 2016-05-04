@@ -14,8 +14,7 @@ var surveyresult = new Schema({
 	answer_array: Array,
 	taken_before: String,
 	feedback: String,
-	times: Array,
-	keystrokes: Array
+	times: Array
 });
 
 // the schema is useless so far

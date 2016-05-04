@@ -73,15 +73,13 @@ app.post('/surveyResult', function(request, response) {
     var feedback = request.body.feedback;
     var taken_before = request.body.taken_before;
     var times = request.body.times;
-    var keystrokes = request.body.keystrokes;
     SurveyResult.create({id: id,
                      num_correct: num_correct,
                      num_total: num_total,
                      answer_array: answer_array,
                      taken_before: taken_before,
                      feedback: feedback,
-                     times: times,
-                     keystrokes: keystrokes
+                     times: times
                 }, function(err, result) {
                 console.log('Saved new survey result');
                 console.log(err);
