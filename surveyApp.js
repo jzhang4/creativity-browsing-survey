@@ -16,6 +16,8 @@ angular.module('surveyApp').directive('ngEnter', function() {
 });
 
 
+
+
 surveyApp.controller('MainController', ['$scope', '$resource', function($scope, $resource) {
    $scope.main = {};
    $scope.main.num_correct = 0;
@@ -56,7 +58,8 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
                   answer_array: $scope.main.answer_array,
                   taken_before: $scope.main.taken_before,
                   feedback: $scope.main.feedback,
-                  times:times
+                  times:times,
+                  keystrokes: $scope.main.keystrokes
                 }, function(response){
                   end_spinner();
                   $scope.main.code = calcMD5(username);

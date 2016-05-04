@@ -3,7 +3,9 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 	var test = window.RATmodels.RATList(); //retrieves the test
 
 	var answer_array = [];
-
+	var offset = 0;
+	var keystrokes = [];
+	var time_advanced = Date.now();
 	$scope.question_number = 1;
 	$scope.countdown = 7;
 	$scope.currentQuestion = test[$scope.question_number - 1];
@@ -16,7 +18,16 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 										}
 									},1000,7); //starts the countdown
 
-	
+	$scope.recordTime = function(keyEvent){
+		console.log(keyEvent);
+		keystrokes.push({
+			which: keyEvent.which,
+			code: keyEvent.code,
+			time: Date.now(),
+			time_advanced: time_advanced
+		})
+	}
+
 	$scope.submit = function(answer){
 
 
@@ -35,6 +46,7 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$scope.main.total = $scope.question_number;
 			$scope.main.answer_array = answer_array;
 			$scope.main.time_end_survey = Date.now();
+			$scope.main.keystrokes = keystrokes;
 
 			submit_browsing_history(function(){
 				console.log("done submitting browsing history");
@@ -42,8 +54,10 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
                 $scope.main.browsing_history_submitted = true;
             });
 		}else{
+			time_advanced = Date.now();
 	   		$scope.question_number++;
-	   		$scope.currentQuestion = test[$scope.question_number - 1];
+	   		offset = offset + 2;
+	   		$scope.currentQuestion = test[$scope.question_number + offset - 1];
 	   		$interval.cancel(intervalPromise);
 	   		$scope.main.answer = ""; 
 	   		$scope.countdown = 7;
