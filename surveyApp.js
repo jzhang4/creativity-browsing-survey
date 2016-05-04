@@ -21,6 +21,7 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
    $scope.main.num_correct = 0;
    $scope.main.begun = false;
    $scope.main.submitted = false;
+   $scope.main.currently_submitting = false;
 
    username = $scope.main.username = getUrlParameters().username
 
@@ -30,9 +31,10 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
 
    $scope.main.pretend_submit = function(taken_before, feedback){
       $scope.main.taken_before = taken_before;
-        $scope.main.feedback = feedback;
+      $scope.main.feedback = feedback;
       if($scope.main.browsing_history_submitted === false){
         console.log("waiting to submit");
+        $scope.main.currently_submitting = true;
         start_spinner();
       }else{
         $scope.main.submit_survey();
