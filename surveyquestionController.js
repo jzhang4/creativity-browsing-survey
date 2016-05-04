@@ -29,7 +29,7 @@ surveyApp.controller('questionController', ['$scope', '$interval', '$window', fu
 			$scope.main.num_correct++;
 		}
 
-		if($scope.question_number === 1){ //change this to test.length;
+		if($scope.question_number === 40){ //change this to test.length;
 			$interval.cancel(intervalPromise);
 			$scope.main.completed = true;
 			$scope.main.total = $scope.question_number;
