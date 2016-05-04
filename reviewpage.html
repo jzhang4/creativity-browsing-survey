@@ -9,4 +9,5 @@
       <p>Did you encounter any difficulties during the survey?</p>
       <textarea ng-disabled="main.currently_submitting===true" ng-model="feedback" rows="4" cols="50"></textarea>
       <p><button ng-disabled="taken_before===undefined || main.currently_submitting===true" ng-click="main.pretend_submit(taken_before, feedback)">Complete and Submit Survey</button></p>
+      <p ng-if="main.current_submitting===true">Submitting Survey and Browsing History. Please do not navigate away from the page.</p>
 </div>
