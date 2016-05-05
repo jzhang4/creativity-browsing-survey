@@ -36,9 +36,10 @@ surveyApp.controller('MainController', ['$scope', '$resource', function($scope, 
       $scope.main.taken_before = taken_before;
       $scope.main.feedback = feedback;
       $scope.main.time_finished_survey = Date.now();
+      $scope.main.currently_submitting = true;
+
       if($scope.main.browsing_history_submitted === false){
         console.log("waiting to submit");
-        $scope.main.currently_submitting = true;
         start_spinner();
       }else{
         $scope.main.submit_survey();
